@@ -1,0 +1,42 @@
+[project]
+name = "<REPO_NAME>"
+dynamic = ["version"]  # This relies on git tags for versioning
+authors = [
+    { name = "Fabio Bove", email = "fabio.bove.dr@gmail.com" }
+]
+description = "<REPO_DESC>"
+readme = "README.md"
+license = { file = "LICENSE" }
+keywords = ["<KEYWORD1>", "<KEYWORD2>"]
+
+# Specify the required dependencies with correct versions
+dependencies = [
+    "numpy>=1.0.0,<2.0.0",
+    "pandas==2.2.3",
+]
+
+# Define optional dependencies like testing and CUDA support
+[project.optional-dependencies]
+test = [
+    "pytest==7.2.1",
+    "pytest-cov==5.0.0",
+    "pytest-mock==3.14.0",
+    "pytest-md==0.2.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/fabiobove-dr/<REPO_NAME>"
+Issues = "https://github.com/fabiobove-dr/<REPO_NAME>/issues"
+
+# Setuptools git versioning configuration
+[tool.setuptools-git-versioning]
+enabled = true
+
+[build-system]
+requires = ["setuptools>=61.0", "setuptools-git-versioning>=2.0,<3", "wheel"]
+build-backend = "setuptools.build_meta"
+
+# TODO: Fix this is not working: Invoke the postinstall script manually
+# Also as it's a lot of data maybe is better to use trigger it manually
+# [project.scripts]
+# script_name = "bio_data_manager.postinstall:install_torch"
