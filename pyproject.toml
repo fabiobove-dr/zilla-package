@@ -1,5 +1,5 @@
 [project]
-name = "zilla_package"
+name = "zilla-package"
 dynamic = ["version"]
 authors = [{ name = "Fabio Bove", email = "fabio.bove.dr@gmail.com" }]
 description = "A simple package"
@@ -7,11 +7,9 @@ readme = "README.md"
 license = { file = "LICENSE" }
 keywords = ["python-package"]
 
-# Specify the required dependencies with correct versions
 dependencies = [
 ]
 
-# Define optional dependencies like testing and CUDA support
 [project.optional-dependencies]
 test = [
     "pytest==7.3.2",
@@ -25,8 +23,8 @@ cpu = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/fabiobove-dr/py-repo-base"
-Issues = "https://github.com/fabiobove-dr/py-repo-base/issues"
+Homepage = "https://github.com/fabiobove-dr/zilla-package"
+Issues = "https://github.com/fabiobove-dr/zilla-package/issues"
 
 [build-system]
 requires = ["setuptools", "versioningit"]
@@ -42,7 +40,7 @@ file = "src/_version.py"
 zilla = "zilla_package.app:main"
 
 [tool.coverage.run]
-omit = ["*tests*", "commons.py", "*config.py", "!src/commons.py", "_version.py"]
+omit = ["*tests*", "commons.py", "*config.py", "!src/commons.py", "_version.py", "app.py"]
 
 [tool.setuptools.exclude-package-data]
 "*" = ["*"]
