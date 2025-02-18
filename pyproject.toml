@@ -1,42 +1,54 @@
 [project]
-name = "<REPO_NAME>"
-dynamic = ["version"]  # This relies on git tags for versioning
-authors = [
-    { name = "Fabio Bove", email = "fabio.bove.dr@gmail.com" }
-]
-description = "<REPO_DESC>"
+name = "zilla_package"
+dynamic = ["version"]
+authors = [{ name = "Fabio Bove", email = "fabio.bove.dr@gmail.com" }]
+description = "A simple package"
 readme = "README.md"
 license = { file = "LICENSE" }
-keywords = ["<KEYWORD1>", "<KEYWORD2>"]
+keywords = ["python-package"]
 
 # Specify the required dependencies with correct versions
 dependencies = [
-    "numpy>=1.0.0,<2.0.0",
-    "pandas==2.2.3",
 ]
 
 # Define optional dependencies like testing and CUDA support
 [project.optional-dependencies]
 test = [
-    "pytest==7.2.1",
+    "pytest==7.3.2",
     "pytest-cov==5.0.0",
-    "pytest-mock==3.14.0",
-    "pytest-md==0.2.0"
+]
+cuda = [
+    "torch[cuda]==2.3.1",
+]
+cpu = [
+    "torch==2.3.1",
 ]
 
 [project.urls]
-Homepage = "https://github.com/fabiobove-dr/<REPO_NAME>"
-Issues = "https://github.com/fabiobove-dr/<REPO_NAME>/issues"
-
-# Setuptools git versioning configuration
-[tool.setuptools-git-versioning]
-enabled = true
+Homepage = "https://github.com/fabiobove-dr/py-repo-base"
+Issues = "https://github.com/fabiobove-dr/py-repo-base/issues"
 
 [build-system]
-requires = ["setuptools>=61.0", "setuptools-git-versioning>=2.0,<3", "wheel"]
+requires = ["setuptools", "versioningit"]
 build-backend = "setuptools.build_meta"
 
-# TODO: Fix this is not working: Invoke the postinstall script manually
-# Also as it's a lot of data maybe is better to use trigger it manually
-# [project.scripts]
-# script_name = "bio_data_manager.postinstall:install_torch"
+[tool.versioningit]
+default-version = "0.0.0"
+
+[tool.versioningit.write]
+file = "src/_version.py"
+
+[project.scripts]
+zilla = "zilla_package.app:main"
+
+[tool.coverage.run]
+omit = ["*tests*", "commons.py", "*config.py", "!src/commons.py", "_version.py"]
+
+[tool.setuptools.exclude-package-data]
+"*" = ["*"]
+"src" = []
+
+[tool.versioningit.format]
+distance = "{base_version}"
+dirty = "{base_version}"
+distance-dirty = "{base_version}"
